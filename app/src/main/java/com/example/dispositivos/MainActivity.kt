@@ -21,7 +21,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             DispositivosTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainView(Modifier.padding(innerPadding))
+                    MainView(Modifier.padding(innerPadding),
+                        listOf(
+                            Device(1, "Nexus", Specs("Rojo", "256 GB")),
+                            Device(2, "Samsung", null)))
                 }
             }
         }
