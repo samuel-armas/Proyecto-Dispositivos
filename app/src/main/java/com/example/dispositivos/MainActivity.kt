@@ -35,6 +35,10 @@ class MainActivity : ComponentActivity() {
                     device = result
                 }
 
+                getDevice { result ->
+                    device = result
+                }
+
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MainView(Modifier.padding(innerPadding), devices = device)
                 }
@@ -53,6 +57,18 @@ class MainActivity : ComponentActivity() {
             val devices = services.getAllDevices()
 
             onResult(devices)
+        }
+    }
+
+    private fun getDevice(onResult: (List<Device>) -> Unit){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val services = retrofit.create(DispositivosService::class.java)
+        lifecycleScope.launch {
+            val device = services.getOject()
+            onResult(listOf(device))
         }
     }
 
