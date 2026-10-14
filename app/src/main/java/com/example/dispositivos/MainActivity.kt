@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.example.dispositivos.ui.theme.DispositivosTheme
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.intellij.lang.annotations.JdkConstants
 import retrofit2.Retrofit
@@ -70,8 +71,8 @@ class MainActivity : ComponentActivity() {
         val services = retrofit.create(DispositivosService::class.java)
         var devices: List<Device>? = null
         lifecycleScope.launch {
-            val devices = services.getAllDevices()
-
+            devices = services.getAllDevices()
+        }.invokeOnCompletion {
             onResult(devices)
         }
     }
