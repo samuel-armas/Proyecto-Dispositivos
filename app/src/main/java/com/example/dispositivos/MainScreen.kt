@@ -34,9 +34,8 @@ fun MainView(modifier: Modifier, devices : List<Device>){
 @Composable
 fun MainPreview() {
     DispositivosTheme {
-
         MainView(Modifier.padding(top = 24.dp), listOf(
-            Device(1, "Nexus", Specs("Rojo", "256 GB")),
+            Device(1, "Nexus", Specs("Rojo", "256 GB", 23.535f)),
             Device(2, "Samsung", null)))
     }
 }

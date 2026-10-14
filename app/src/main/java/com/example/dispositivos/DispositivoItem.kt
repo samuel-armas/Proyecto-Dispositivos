@@ -35,6 +35,11 @@ fun DeviceItemView(device: Device) {
                 Text(text = device.data.capacity,
                     style = Typography.bodyMedium)
             }
+            if (device.data?.price != null){
+                Text(text = "$${device.data.price}",
+                    style = Typography.bodyMedium
+                )
+            }
             /*Text(text = device.name, style = Typography.headlineSmall)
             Text(text = device.data?.color ?: "-", style = Typography.bodyMedium)
             Text(text = device.data?.capacity ?: "-", style = Typography.bodyMedium)*/
@@ -47,6 +52,6 @@ fun DeviceItemView(device: Device) {
 fun DeviceItemPreview(){
     DispositivosTheme {
         DeviceItemView(device = Device(1,
-            "Nexus", Specs("Rojo", "256 GB")))
+            "Nexus", Specs("Rojo", "256 GB", 22.224f)))
     }
 }
